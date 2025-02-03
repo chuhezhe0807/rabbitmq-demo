@@ -1,0 +1,12 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: rabbitmq-producer
+  rabbitmq:
+    host: 192.168.20.100
+    port: 5672
+    username: guest
+    password: 123456
+    virtual-host: /

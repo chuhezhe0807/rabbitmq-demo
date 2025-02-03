@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: rabbitmq-consumer
+  rabbitmq:
+    host: 192.168.20.100
+    port: 5672
+    username: guest
+    password: 123456
+    virtual-host: /
+
+logging:
+  level:
+    com.chuhezhe.mq.listener.MyMessageListener: INFO # 将此类的日志级别设置为info
