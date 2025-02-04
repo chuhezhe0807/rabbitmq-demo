@@ -13,6 +13,7 @@ spring:
     listener:
       simple:
         acknowledge-mode: manual # 把消息确认改为手动确认，默认值为auto，就是无论消费端处理成功或失败都返回ack信息，都当做成功处理
+        prefetch: 1 # 每次从队列中去取的消息数量，如果不设置prefetch，消费者会一次性把所有消息都取回来，但是会使消费端压力过大，此时设置合理的prefetch值可以减轻服务端的压力
 
 logging:
   level:

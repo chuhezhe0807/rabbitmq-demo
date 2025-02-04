@@ -11,6 +11,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * ClassName: MyMessageListener
@@ -37,7 +38,7 @@ public class MyMessageListener {
 //                    key = {Constants.ROUTING_KEY}
 //            )
 //    )
-    @RabbitListener(queues = {Constants.QUEUE_NAME})
+//    @RabbitListener(queues = {Constants.QUEUE_NAME})
     public void processMessage(
             String dataString,      // 消息内容，本demo中使用的都是字符串消息，所以这里是String类型
             Message message,        // 代表消息的对象
@@ -71,5 +72,16 @@ public class MyMessageListener {
             // basicNack与basicReject都是返回nack，区别在于：basicNack能控制是否批量操作，basicReject不能
         }
 
+    }
+
+    // 测试慢一点消费消息
+    @RabbitListener(queues = {Constants.QUEUE_NAME})
+    public void processMessageTestPrefetch(String dataString, Message message, Channel channel) throws IOException, InterruptedException {
+        log.info("消费端接收到了消息，{}", dataString);
+        long deliveryTag = message.getMessageProperties().getDeliveryTag();
+
+        TimeUnit.SECONDS.sleep(1);
+
+        channel.basicAck(deliveryTag, false);
     }
 }

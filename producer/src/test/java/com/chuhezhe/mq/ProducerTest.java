@@ -29,4 +29,12 @@ public class ProducerTest {
                 "hello, spring boot rabbitmq."  // 发送的消息
         );
     }
+
+    // 发送100条消息，测试
+    @Test
+    public void test02() {
+        for (int i = 0; i < 100; i++) {
+            rabbitTemplate.convertAndSend(Constants.EXCHANGE_DIRECT, Constants.ROUTING_KEY, "test prefetch " + i);
+        }
+    }
 }
