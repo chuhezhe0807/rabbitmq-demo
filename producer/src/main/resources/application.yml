@@ -9,4 +9,10 @@ spring:
     port: 5672
     username: guest
     password: 123456
-    virtual-host: /
+    virtual-host: / # 设置RabbitMQ的虚拟主机为 /（默认虚拟主机）
+    publisher-confirm-type: correlated # 交换机的确认
+    publisher-returns: true # 队列的确认
+
+logging:
+  level:
+    com.chuhezhe.mq.config.MQProducerAckConfig: info

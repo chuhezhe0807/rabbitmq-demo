@@ -4,24 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb8043a3-a29c-47c2-925c-8f7920c437ea" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/consumer/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/consumer/src/main/java/com/chuhezhe/mq/ConsumerMainApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/consumer/src/main/java/com/chuhezhe/mq/listener/MyMessageListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/consumer/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/com/chuhezhe/mq/Constants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer/src/main/java/com/chuhezhe/mq/ProducerMainApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/producer/src/test/java/com/chuhezhe/mq/ProducerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/笔记相关/note.txt" afterDir="false" />
+    <list default="true" id="bb8043a3-a29c-47c2-925c-8f7920c437ea" name="Changes" comment="RabbitMq 简单示例;">
+      <change afterPath="$PROJECT_DIR$/producer/src/main/java/com/chuhezhe/mq/config/MQProducerAckConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/笔记相关/RabbitMQ工作原理.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/producer/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/producer/src/test/java/com/chuhezhe/mq/ProducerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer/src/test/java/com/chuhezhe/mq/ProducerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,8 +141,16 @@
       <option name="presentableId" value="Default" />
       <updated>1738581294070</updated>
       <workItem from="1738581296928" duration="3533000" />
-      <workItem from="1738584874594" duration="3108000" />
+      <workItem from="1738584874594" duration="9067000" />
     </task>
+    <task id="LOCAL-00001" summary="RabbitMq 简单示例;">
+      <created>1738589279219</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1738589279219</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,5 +166,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="RabbitMq 简单示例;" />
+    <option name="LAST_COMMIT_MESSAGE" value="RabbitMq 简单示例;" />
   </component>
 </project>

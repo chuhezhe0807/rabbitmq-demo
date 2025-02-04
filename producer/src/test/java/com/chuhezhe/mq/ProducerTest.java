@@ -24,7 +24,7 @@ public class ProducerTest {
     @Test
     public void testSendMessage() {
         rabbitTemplate.convertAndSend(
-                Constants.EXCHANGE_DIRECT,      // 交换机名称
+                Constants.EXCHANGE_DIRECT + "1",      // 交换机名称，测试交换机名称错误，发送到交换机失败的场景
                 Constants.ROUTING_KEY,          // 路由键
                 "hello, spring boot rabbitmq."  // 发送的消息
         );
