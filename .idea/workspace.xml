@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb8043a3-a29c-47c2-925c-8f7920c437ea" name="Changes" comment="RabbitMq 生产者端通过ConfirmCallback和ReturnsCallback实现消息的确认;&#10;· 构建好 MQProducerAckConfig 配置类后还需要将其设置到rabbitTemplate中才会生效，rabbitTemplate.setConfirmCallback(this);&#10;· ConfirmCallback中如果消息发送到交换机成功则ack为true，否则为false;&#10;· returnedMessage 消息发送到队列失败才会调用这个方法;">
+    <list default="true" id="bb8043a3-a29c-47c2-925c-8f7920c437ea" name="Changes" comment="RabbitMq 消息可靠性，备份交换机;&#10;· 可以再创建交换机是设置备份交换机（&#10;Add&#9;Alternate exchange）同时为备份交换机绑定队列，在消息成功发送到交换机后，但是没能找到匹配的路由键时，将这条消息发送给备份交换机，进入备份交换机的消息队列。;&#10;· 当备份交换机队列中出现消息时，就知道被备份的交换机出现问题了，可以用作告警使用;">
+      <change afterPath="$PROJECT_DIR$/笔记相关/消息可靠性问题及解决思路.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer/src/test/java/com/chuhezhe/mq/ProducerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer/src/test/java/com/chuhezhe/mq/ProducerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consumer/src/main/java/com/chuhezhe/mq/listener/MyMessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/consumer/src/main/java/com/chuhezhe/mq/listener/MyMessageListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consumer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/consumer/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/笔记相关/note.txt" beforeDir="false" afterPath="$PROJECT_DIR$/笔记相关/note.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,9 +126,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ProducerTest.testSendMessage" />
         <item itemvalue="Spring Boot.ConsumerMainApplication" />
         <item itemvalue="Spring Boot.ProducerMainApplication" />
+        <item itemvalue="JUnit.ProducerTest.testSendMessage" />
       </list>
     </recent_temporary>
   </component>
@@ -138,7 +141,7 @@
       <option name="presentableId" value="Default" />
       <updated>1738581294070</updated>
       <workItem from="1738581296928" duration="3533000" />
-      <workItem from="1738584874594" duration="10837000" />
+      <workItem from="1738584874594" duration="17806000" />
     </task>
     <task id="LOCAL-00001" summary="RabbitMq 简单示例;">
       <created>1738589279219</created>
@@ -154,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1738640748227</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="RabbitMq 消息可靠性，备份交换机;&#10;· 可以再创建交换机是设置备份交换机（&#10;Add&#9;Alternate exchange）同时为备份交换机绑定队列，在消息成功发送到交换机后，但是没能找到匹配的路由键时，将这条消息发送给备份交换机，进入备份交换机的消息队列。;&#10;· 当备份交换机队列中出现消息时，就知道被备份的交换机出现问题了，可以用作告警使用;">
+      <created>1738646350127</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1738646350127</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,6 +195,18 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="RabbitMq 简单示例;" />
     <MESSAGE value="RabbitMq 生产者端通过ConfirmCallback和ReturnsCallback实现消息的确认;&#10;· 构建好 MQProducerAckConfig 配置类后还需要将其设置到rabbitTemplate中才会生效，rabbitTemplate.setConfirmCallback(this);&#10;· ConfirmCallback中如果消息发送到交换机成功则ack为true，否则为false;&#10;· returnedMessage 消息发送到队列失败才会调用这个方法;" />
-    <option name="LAST_COMMIT_MESSAGE" value="RabbitMq 生产者端通过ConfirmCallback和ReturnsCallback实现消息的确认;&#10;· 构建好 MQProducerAckConfig 配置类后还需要将其设置到rabbitTemplate中才会生效，rabbitTemplate.setConfirmCallback(this);&#10;· ConfirmCallback中如果消息发送到交换机成功则ack为true，否则为false;&#10;· returnedMessage 消息发送到队列失败才会调用这个方法;" />
+    <MESSAGE value="RabbitMq 消息可靠性，备份交换机;&#10;· 可以再创建交换机是设置备份交换机（&#10;Add&#9;Alternate exchange）同时为备份交换机绑定队列，在消息成功发送到交换机后，但是没能找到匹配的路由键时，将这条消息发送给备份交换机，进入备份交换机的消息队列。;&#10;· 当备份交换机队列中出现消息时，就知道被备份的交换机出现问题了，可以用作告警使用;" />
+    <option name="LAST_COMMIT_MESSAGE" value="RabbitMq 消息可靠性，备份交换机;&#10;· 可以再创建交换机是设置备份交换机（&#10;Add&#9;Alternate exchange）同时为备份交换机绑定队列，在消息成功发送到交换机后，但是没能找到匹配的路由键时，将这条消息发送给备份交换机，进入备份交换机的消息队列。;&#10;· 当备份交换机队列中出现消息时，就知道被备份的交换机出现问题了，可以用作告警使用;" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/consumer/src/main/java/com/chuhezhe/mq/listener/MyMessageListener.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

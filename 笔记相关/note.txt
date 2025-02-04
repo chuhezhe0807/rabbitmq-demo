@@ -17,3 +17,18 @@ docker run -d \
 	-e RABBITMQ_DEFAULT_USER=guest \
 	-e RABBITMQ_DEFAULT_PASS=123456 \
 	rabbitmq:3.13-management
+
+
+rabbitmq交换机类型：
+    fanout 将接收到的消息广播到他所知道的所有队列中。
+    direct 消息只去到他绑定的路由键队列中去
+    topic  发送到类型是 topic 交换机的消息的 routing_key 不能随意写，必须满足一定的要求，它必须是一个单词列表，以点号分隔开。
+            这些单词可以是任意单词，比如说：“stock.usd.nyse”, “nyse.vmw”, “quick.orange.rabbit”.这种类型的。当然这个单词列表最多不能超过 255 个字节。
+            *(星号)可以代替一个单词 #(井号)可以替代零个或多个单词
+
+
+
+如果交换机是fanout模式，同一个消息广播到了不同队列，deliveryTag会重复吗？
+    不会，deliveryTag在同一个broker中唯一。消息会复制到各个队列，但是deliveryTag不同。
+        下单请求的消息队列有多个消费者：更新购物车、更新库存和更新积分。更新购物车的微服务消费了消息返回ack确认信息，然后broker删除了消息，
+    进而导致更新库存、更新积分的服务拿不到消息，这种情况会发生吗？由于deliveryTag不同，不会出现这种情况。

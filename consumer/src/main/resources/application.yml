@@ -10,6 +10,9 @@ spring:
     username: guest
     password: 123456
     virtual-host: /
+    listener:
+      simple:
+        acknowledge-mode: manual # 把消息确认改为手动确认，默认值为auto，就是无论消费端处理成功或失败都返回ack信息，都当做成功处理
 
 logging:
   level:
