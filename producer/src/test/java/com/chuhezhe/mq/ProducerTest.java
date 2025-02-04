@@ -1,5 +1,6 @@
 package com.chuhezhe.mq;
 
+import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -18,7 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class ProducerTest {
 
-    @Autowired
+    @Resource
     RabbitTemplate rabbitTemplate;
 
     // 发送消息
@@ -58,7 +59,20 @@ public class ProducerTest {
             return message;
         };
 
-        rabbitTemplate.convertAndSend(Constants.EXCHANGE_TIMEOUT, Constants.ROUTING_KEY_TIMEOUT, "test timeout"
+        rabbitTemplate.convertAndSend(Constants.EXCHANGE_TIMEOUT, Constants.ROUTING_KEY_TIMEOUT, "test timeout",
                 messagePostProcessor);
+    }
+
+    // 死信产生的情况2：超出队列最大容量
+    // 死信产生的情况3：超时（此时关闭消费者端，消息队列定义了10s的超时时间，超时后就会成为死信）
+    @Test
+    public void test05() {
+        for (int i = 0; i < 20; i++) {
+            rabbitTemplate.convertAndSend(
+                Constants.EXCHANGE_NORMAL,
+                Constants.ROUTING_KEY_NORMAL,
+                "死信产生的情况2：超出队列最大容量 " + i
+            );
+        }
     }
 }

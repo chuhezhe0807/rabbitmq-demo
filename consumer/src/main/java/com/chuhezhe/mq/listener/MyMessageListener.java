@@ -84,4 +84,22 @@ public class MyMessageListener {
 
         channel.basicAck(deliveryTag, false);
     }
+
+    @RabbitListener(queues = {Constants.QUEUE_DEAD_LETTER})
+    public void processMessageNormal(String dataString, Message message, Channel channel) throws IOException {
+        log.info("[dead letter] 死信队列接收到了死信消息 dataString: {}", dataString);
+
+        // 因为开了 rabbitmq.listener.simple.acknowledge-mode = manual，所以死信队列也需要手动确认
+        // 这里就直接返回ack，不在拒绝了
+        channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+    }
+
+    // 产生死信的情况1：basicReject/basicNack && requeue = false
+    @RabbitListener(queues = {Constants.QUEUE_NORMAL})
+    public void processMessageDeadLetter(String dataString, Message message, Channel channel) throws IOException {
+        log.info("[normal]消息接收到了，但是返回reject basicReject");
+        channel.basicReject(message.getMessageProperties().getDeliveryTag(), false);
+    }
+
+
 }
