@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bb8043a3-a29c-47c2-925c-8f7920c437ea" name="Changes" comment="RabbitMq 实现消息可靠性，生产者端、消费者端和rabbitmq服务相互配合实现;&#10;· 生产者端保证和监控消息发送到消息队列上，如果失败作出处理或者告警;&#10;· rabbitmq服务将消息持久化到硬盘上，哪怕服务器重启消息也不会丢失;&#10;· 消费者端 rabbitmq.listener.simple.acknowledge-mode = manual，把消息确认改为手动确认，进而在处理消息时调用 channel.basicAck、basicNack 返回ack或nack消息，实现消息的确认或者重试重新发送一条消息;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumer/src/main/java/com/chuhezhe/mq/listener/MyMessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/consumer/src/main/java/com/chuhezhe/mq/listener/MyMessageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/consumer/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/com/chuhezhe/mq/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/com/chuhezhe/mq/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/producer/src/test/java/com/chuhezhe/mq/ProducerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer/src/test/java/com/chuhezhe/mq/ProducerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +60,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "File.Encoding",
+    "settings.editor.selected.configurable": "MavenSettings",
     "spring.configuration.checksum": "46650d0218f3304129f8b247e1ac6d75",
     "vue.rearranger.settings.migration": "true"
   }
@@ -78,7 +77,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ProducerTest.test02">
+  <component name="RunManager" selected="JUnit.ProducerTest.test03Timeout">
     <configuration name="ProducerTest.test02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="producer" />
       <extension name="coverage">
@@ -90,6 +89,22 @@
       <option name="PACKAGE_NAME" value="com.chuhezhe.mq" />
       <option name="MAIN_CLASS_NAME" value="com.chuhezhe.mq.ProducerTest" />
       <option name="METHOD_NAME" value="test02" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProducerTest.test03Timeout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="producer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.chuhezhe.mq.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.chuhezhe.mq" />
+      <option name="MAIN_CLASS_NAME" value="com.chuhezhe.mq.ProducerTest" />
+      <option name="METHOD_NAME" value="test03Timeout" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -141,9 +156,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ProducerTest.test03Timeout" />
+        <item itemvalue="Spring Boot.ProducerMainApplication" />
         <item itemvalue="Spring Boot.ConsumerMainApplication" />
         <item itemvalue="JUnit.ProducerTest.test02" />
-        <item itemvalue="Spring Boot.ProducerMainApplication" />
         <item itemvalue="JUnit.ProducerTest.testSendMessage" />
       </list>
     </recent_temporary>

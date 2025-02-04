@@ -11,6 +11,8 @@ package com.chuhezhe.mq;
  */
 public interface Constants {
     String EXCHANGE_DIRECT = "exchange.direct.order";
+    String EXCHANGE_TIMEOUT = "exchange.test.timeout";
+    String ROUTING_KEY_TIMEOUT = "routing.key.test.timeout";
     String ROUTING_KEY = "order";
     String QUEUE_NAME = "queue.order";
 }

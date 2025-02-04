@@ -1,6 +1,7 @@
 package com.chuhezhe.mq;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,5 +37,28 @@ public class ProducerTest {
         for (int i = 0; i < 100; i++) {
             rabbitTemplate.convertAndSend(Constants.EXCHANGE_DIRECT, Constants.ROUTING_KEY, "test prefetch " + i);
         }
+    }
+
+    // 测试队列消息超时
+    @Test
+    public void test03Timeout() {
+        for (int i = 0; i < 100; i++) {
+            rabbitTemplate.convertAndSend(Constants.EXCHANGE_TIMEOUT, Constants.ROUTING_KEY_TIMEOUT, "test timeout " + i);
+        }
+    }
+
+    // 设置单个消息超时
+    @Test
+    public void test04Timeout() {
+        // 创建消息后置处理器对象
+        MessagePostProcessor messagePostProcessor = (message) -> {
+            // 设置消息单独的过期时间，单位毫秒
+            message.getMessageProperties().setExpiration("7000");
+
+            return message;
+        };
+
+        rabbitTemplate.convertAndSend(Constants.EXCHANGE_TIMEOUT, Constants.ROUTING_KEY_TIMEOUT, "test timeout"
+                messagePostProcessor);
     }
 }
