@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb8043a3-a29c-47c2-925c-8f7920c437ea" name="Changes" comment="RabbitMq 简单示例;">
-      <change afterPath="$PROJECT_DIR$/producer/src/main/java/com/chuhezhe/mq/config/MQProducerAckConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/笔记相关/RabbitMQ工作原理.png" afterDir="false" />
+    <list default="true" id="bb8043a3-a29c-47c2-925c-8f7920c437ea" name="Changes" comment="RabbitMq 生产者端通过ConfirmCallback和ReturnsCallback实现消息的确认;&#10;· 构建好 MQProducerAckConfig 配置类后还需要将其设置到rabbitTemplate中才会生效，rabbitTemplate.setConfirmCallback(this);&#10;· ConfirmCallback中如果消息发送到交换机成功则ack为true，否则为false;&#10;· returnedMessage 消息发送到队列失败才会调用这个方法;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/producer/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/producer/src/test/java/com/chuhezhe/mq/ProducerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer/src/test/java/com/chuhezhe/mq/ProducerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -127,8 +124,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.ProducerTest.testSendMessage" />
-        <item itemvalue="Spring Boot.ProducerMainApplication" />
         <item itemvalue="Spring Boot.ConsumerMainApplication" />
+        <item itemvalue="Spring Boot.ProducerMainApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -141,7 +138,7 @@
       <option name="presentableId" value="Default" />
       <updated>1738581294070</updated>
       <workItem from="1738581296928" duration="3533000" />
-      <workItem from="1738584874594" duration="9067000" />
+      <workItem from="1738584874594" duration="10837000" />
     </task>
     <task id="LOCAL-00001" summary="RabbitMq 简单示例;">
       <created>1738589279219</created>
@@ -150,11 +147,29 @@
       <option name="project" value="LOCAL" />
       <updated>1738589279219</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="RabbitMq 生产者端通过ConfirmCallback和ReturnsCallback实现消息的确认;&#10;· ConfirmCallback中如果消息发送到交换机成功则ack为true，否则为false;&#10;· returnedMessage 消息发送到队列失败才会调用这个方法;">
+      <created>1738640748227</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1738640748227</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -169,6 +184,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="RabbitMq 简单示例;" />
-    <option name="LAST_COMMIT_MESSAGE" value="RabbitMq 简单示例;" />
+    <MESSAGE value="RabbitMq 生产者端通过ConfirmCallback和ReturnsCallback实现消息的确认;&#10;· 构建好 MQProducerAckConfig 配置类后还需要将其设置到rabbitTemplate中才会生效，rabbitTemplate.setConfirmCallback(this);&#10;· ConfirmCallback中如果消息发送到交换机成功则ack为true，否则为false;&#10;· returnedMessage 消息发送到队列失败才会调用这个方法;" />
+    <option name="LAST_COMMIT_MESSAGE" value="RabbitMq 生产者端通过ConfirmCallback和ReturnsCallback实现消息的确认;&#10;· 构建好 MQProducerAckConfig 配置类后还需要将其设置到rabbitTemplate中才会生效，rabbitTemplate.setConfirmCallback(this);&#10;· ConfirmCallback中如果消息发送到交换机成功则ack为true，否则为false;&#10;· returnedMessage 消息发送到队列失败才会调用这个方法;" />
   </component>
 </project>
