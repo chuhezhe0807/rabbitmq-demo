@@ -18,6 +18,11 @@ public interface Constants {
 
     String EXCHANGE_DEAD_LETTER = "exchange.dead.letter";
 
+    // 基于 rabbitmq_delayed_message_exchange 插件的延迟消息交换机，类型为x-delayed-message，并且带有参数arguments: x-delayed-type:	direct
+    String EXCHANGE_DELAY = "exchange.test.delay";
+
+    String ROUTING_KEY_DELAY = "routing.key.delay";
+
     String ROUTING_KEY_DEAD_LETTER = "routing.key.dead.letter";
 
     String ROUTING_KEY_NORMAL = "routing.key.normal";
@@ -31,4 +36,6 @@ public interface Constants {
     String QUEUE_DEAD_LETTER = "queue.dead.letter";
 
     String QUEUE_NORMAL = "queue.normal";
+
+    String QUEUE_DELAY = "queue.test.delay";
 }

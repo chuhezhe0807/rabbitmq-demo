@@ -7,6 +7,9 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * ClassName: ProducerTest
  * Package: com.chuhezhe.mq
@@ -74,5 +77,25 @@ public class ProducerTest {
                 "死信产生的情况2：超出队列最大容量 " + i
             );
         }
+    }
+
+    // 测试基于插件的延迟消息
+    @Test
+    public void test06DelayMessageByPlugins() {
+        // 消息后置处理器
+        MessagePostProcessor messagePostProcessor = (message) -> {
+            // 设置超时时间，单位毫秒
+            // "x-delay" 只有 rabbitmq_delayed_message_exchange 插件才能识别，且交换机类型要为 x-delayed-message
+            message.getMessageProperties().setHeader("x-delay", "10000");
+
+            return message;
+        };
+
+        rabbitTemplate.convertAndSend(
+                Constants.EXCHANGE_DELAY,
+                Constants.ROUTING_KEY_DELAY,
+                "test delay by plugin " + new SimpleDateFormat("HH:mm:ss").format(new Date()),
+                messagePostProcessor
+        );
     }
 }

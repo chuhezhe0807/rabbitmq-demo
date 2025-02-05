@@ -11,6 +11,8 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -101,5 +103,12 @@ public class MyMessageListener {
         channel.basicReject(message.getMessageProperties().getDeliveryTag(), false);
     }
 
+    // 监听延时队列（基于x-delayed-message插件）
+    @RabbitListener(queues = {Constants.QUEUE_DELAY})
+    public void processMessageDelay(String dataStr, Message message, Channel channel) throws IOException {
+        log.info("[delay message] 消息本身：{}", dataStr);
+        log.info("当前时间：{}", new SimpleDateFormat("HH:mm:ss").format(new Date()));
 
+        channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+    }
 }

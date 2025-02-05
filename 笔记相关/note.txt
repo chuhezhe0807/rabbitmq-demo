@@ -37,6 +37,26 @@ rabbitmq交换机类型：
         2、入库：把私信写入数据库，日后处理
         3、监听：消息变成死信后进入死信队列，专门设置消费端监听死信队列，做后续处理（通常采用）
 
+延迟队列：
+    1、可以通过给正常队列设置一个超时的死信队列，超时时间为延迟时间实现。
+    2、延迟插件 rabbitmq_delayed_message_exchange https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases/download/v3.13.0/rabbitmq_delayed_message_exchange-3.13.0.ez
+        # 将下载好的插件复制到docker rabbitmq容器下的 /plugins 目录中
+        docker cp rabbitmq_delayed_message_exchange-3.8.0.ez 58c062ae8ab5:/plugins
+        # 进入rabbitmq容器
+        docker exec -it 58c062ae8ab5 /bin/bash
+        cd /plugins
+        # rabbitmq-plugins 命令所在的目录已经配置到docker容器内$PATH环境变量中了，可以直接调用
+        # 切记不要带版本号 rabbitmq_delayed_message_exchange-3.8.0.ez
+        rabbitmq-plugins enable rabbitmq_delayed_message_exchange
+        # 可以通过rabbitmq-plugins list 查看所有的插件信息及启用与否 E* 表示已启用
+        rabbitmq-plugins list
+        # 退出docker容器
+        exit
+        # 重启docker容器
+        docker restart rabbitmq
+
+        插件启动成功后，在rabbitmq图形化管理页面直接创建 x-delayed-message 类型的交换机，再设置x-delayed-type参数为direct设置交换机的类型
+
 
 
 如果交换机是fanout模式，同一个消息广播到了不同队列，deliveryTag会重复吗？
