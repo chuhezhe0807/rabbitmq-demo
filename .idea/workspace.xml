@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb8043a3-a29c-47c2-925c-8f7920c437ea" name="Changes" comment="RabbitMq 死信的产生和处理方式;&#10;· 注意：如果监听了死信队列，消费者端重新启动后已经持久化处理的死信会被消费掉;">
+    <list default="true" id="bb8043a3-a29c-47c2-925c-8f7920c437ea" name="Changes" comment="RabbitMq 通过死信队列和延迟队列插件实现延迟消息;&#10;· 可以通过给正常队列设置一个超时的死信队列，超时时间为延迟时间实现;&#10;· 延迟插件 rabbitmq_delayed_message_exchange 创建类型为x-delayed-message的交换机，并在发送消息的后置处理器中 setHeader(&quot;x-delay&quot;, &quot;10000&quot;) 设置延迟时间;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumer/src/main/java/com/chuhezhe/mq/listener/MyMessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/consumer/src/main/java/com/chuhezhe/mq/listener/MyMessageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/com/chuhezhe/mq/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/com/chuhezhe/mq/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer/src/test/java/com/chuhezhe/mq/ProducerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer/src/test/java/com/chuhezhe/mq/ProducerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/笔记相关/note.txt" beforeDir="false" afterPath="$PROJECT_DIR$/笔记相关/note.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -219,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1738679399924</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="RabbitMq 通过死信队列和延迟队列插件实现延迟消息;&#10;· 可以通过给正常队列设置一个超时的死信队列，超时时间为延迟时间实现;&#10;· 延迟插件 rabbitmq_delayed_message_exchange 创建类型为x-delayed-message的交换机，并在发送消息的后置处理器中 setHeader(&quot;x-delay&quot;, &quot;10000&quot;) 设置延迟时间;">
+      <created>1738727052756</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1738727052756</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,6 +258,8 @@
     <MESSAGE value="RabbitMq 实现消息可靠性，生产者端、消费者端和rabbitmq服务相互配合实现;&#10;· 生产者端保证和监控消息发送到消息队列上，如果失败作出处理或者告警;&#10;· rabbitmq服务将消息持久化到硬盘上，哪怕服务器重启消息也不会丢失;&#10;· 消费者端 rabbitmq.listener.simple.acknowledge-mode = manual，把消息确认改为手动确认，进而在处理消息时调用 channel.basicAck、basicNack 返回ack或nack消息，实现消息的确认或者重试重新发送一条消息;" />
     <MESSAGE value="RabbitMq 消息超时 创建队列时设置参数x-message-ttl 单位为毫秒;&#10;· 如果消费端没有把消息从消息队列中取走，那么消息就会在队列中积压，最终可能导致rabbitmq存储空间耗尽，所以需要给消息设定一个过期时间，超过这个时间没有被取走的消息就会被删除;&#10;· 队列超时时间（队列中所有消息共同的超时时间），消息超时时间（单个消息的）;" />
     <MESSAGE value="RabbitMq 死信的产生和处理方式;&#10;· 注意：如果监听了死信队列，消费者端重新启动后已经持久化处理的死信会被消费掉;" />
-    <option name="LAST_COMMIT_MESSAGE" value="RabbitMq 死信的产生和处理方式;&#10;· 注意：如果监听了死信队列，消费者端重新启动后已经持久化处理的死信会被消费掉;" />
+    <MESSAGE value="RabbitMq 通过死信队列和延迟队列插件实现延迟消息;&#10;· 可以通过给正常队列设置一个超时的死信队列，超时时间为延迟时间实现;&#10;· 延迟插件 rabbitmq_delayed_message_exchange;" />
+    <MESSAGE value="RabbitMq 通过死信队列和延迟队列插件实现延迟消息;&#10;· 可以通过给正常队列设置一个超时的死信队列，超时时间为延迟时间实现;&#10;· 延迟插件 rabbitmq_delayed_message_exchange 创建类型为x-delayed-message的交换机，并在发送消息的后置处理器中 setHeader(&quot;x-delay&quot;, &quot;10000&quot;) 设置延迟时间;" />
+    <option name="LAST_COMMIT_MESSAGE" value="RabbitMq 通过死信队列和延迟队列插件实现延迟消息;&#10;· 可以通过给正常队列设置一个超时的死信队列，超时时间为延迟时间实现;&#10;· 延迟插件 rabbitmq_delayed_message_exchange 创建类型为x-delayed-message的交换机，并在发送消息的后置处理器中 setHeader(&quot;x-delay&quot;, &quot;10000&quot;) 设置延迟时间;" />
   </component>
 </project>

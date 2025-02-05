@@ -57,6 +57,15 @@ rabbitmq交换机类型：
 
         插件启动成功后，在rabbitmq图形化管理页面直接创建 x-delayed-message 类型的交换机，再设置x-delayed-type参数为direct设置交换机的类型
 
+RabbitMQ一般通过confirm和事务保证消息一定能发送成功。
+    消息事务：RabbitMQ 的事务消息机制是将生产者发消息的操作打包成一个原子单元，要么全部成功，要么全部失败，事务可以确保消息的完整性。
+
+    RabbitMQ 的事务消息有点类似 Spring 的事务，分为开始事务、提交事务、回滚事务。
+        txSelect()：开始事务，使用 txSelect() 开启事务。
+        txCommit()：提交事务，如果 txCommit() 提交事务成功了，则消息一定会发送到 RabbitMQ。
+        txRollback()：回滚事务，如果在执行 txCommit() 之前 RabbitMQ 发生了异常，txRollback() 会捕获异常进行回滚。
+
+    注意：‌RabbitMQ的Confirm机制和事务机制不能同时使用‌。使用事务时，需要注释掉publisher-confirm-type: correlated 配置
 
 
 如果交换机是fanout模式，同一个消息广播到了不同队列，deliveryTag会重复吗？
