@@ -98,4 +98,24 @@ public class ProducerTest {
                 messagePostProcessor
         );
     }
+
+    // 优先级消息
+    @Test
+    public void test07PriorityMessage() {
+        for (int i = 1; i <= 5; i++) {
+            int priority = i;
+
+            rabbitTemplate.convertAndSend(
+                    Constants.EXCHANGE_PRIORITY,
+                    Constants.ROUTING_KEY_PRIORITY,
+                    "优先级消息 " + i,
+                    (message) -> {
+                        // priority 越大优先级越高
+                        message.getMessageProperties().setPriority(priority); // priority不能超过队列设置的 x-max-priority 值
+
+                        return message;
+                    }
+            );
+        }
+    }
 }

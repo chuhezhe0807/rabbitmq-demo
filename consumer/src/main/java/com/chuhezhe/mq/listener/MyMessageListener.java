@@ -111,4 +111,12 @@ public class MyMessageListener {
 
         channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
     }
+
+    // 监听优先级消息
+    @RabbitListener(queues = {Constants.QUEUE_PRIORITY})
+    public void processMessagePriority(String dataStr, Message message, Channel channel) throws IOException {
+        log.info("优先级消息：{}", dataStr);
+
+        channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+    }
 }
